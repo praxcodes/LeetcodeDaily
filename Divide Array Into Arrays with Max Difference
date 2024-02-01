@@ -38,3 +38,5 @@ vector<vector<int>> divideArray(vector<int>& nums, int k) {
         }
         return ans;
     }
+//T.C : O(nlogn) due to sorting
+//S.C : O(n)
