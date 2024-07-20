@@ -1,0 +1,33 @@
+  vector<int> topView(Node *root)
+    {
+        vector<int>ans;
+        map<int,map<int,vector<int>>>m;
+        queue<pair<Node*,pair<int,int>>>q;
+        q.push({root,{0,0}});
+        while(!q.empty()){
+            auto a=q.front();
+            q.pop();
+            auto val=a.first;
+            int y=a.second.first;
+            int x=a.second.second;
+            m[y][x].push_back(val->data);
+            if(val->left){
+                q.push({val->left,{y-1,x+1}});
+        
+            }
+            if(val->right){
+                q.push({val->right,{y+1,x+1}});
+            }
+        }
+        for(auto b:m){
+            auto map=b.second; //accessing the map containing levels corres to each vertical index
+            auto top_element=map.begin(); //iterator to first and smallest level on that index
+            auto el=top_element->second; //vector
+            int elvalue=el[0]; 
+            
+            ans.push_back(elvalue);
+        }
+        
+        return ans;
+        
+    }
